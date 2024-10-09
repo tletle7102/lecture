@@ -22,9 +22,9 @@ public class GetController {
     }
 
     // http://localhost:8080/get-api/name
-    @GetMapping(value="/name1")
+    @GetMapping(value="/name")
     public String getName(){
-        return "Jinhee1";
+        return "Jinhee";
     }
 
 }
