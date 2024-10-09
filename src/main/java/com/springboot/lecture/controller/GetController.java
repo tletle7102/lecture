@@ -1,5 +1,6 @@
 package com.springboot.lecture.controller;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,12 @@ public class GetController {
     @RequestMapping(value = "/korea-love", method = RequestMethod.GET)
     public String tea(){
         return "홍차나왔어요!!!";
+    }
+
+    // http://localhost:8080/get-api/name
+    @GetMapping(value="/name")
+    public String getName(){
+        return "Jinhee";
     }
 
 }
