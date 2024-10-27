@@ -2,16 +2,23 @@ package com.springboot.lecture.controller;
 
 
 import com.springboot.lecture.dto.MemberDto;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+@Tag(
+        name="GetController",
+        description="get요청을 테스트하는 api")
 @RestController
 @RequestMapping("/get-api")
 public class GetController {
 
     // http://localhost:8080/get-api/call-cafe
     @RequestMapping(value = "/call-cafe", method = RequestMethod.GET)
+    @Operation(summary="커피주세요", description="get 요청에 의해 커피를 응답")
     public String coffee(){
         return "커피나왔어요!!!";
     }
@@ -53,7 +60,7 @@ public class GetController {
             return sb.toString();
     }
     @GetMapping(value="/request3")
-    public String getRequestParam3(MemberDto memberDto){
+    public String getRequestParam3(@Parameter MemberDto memberDto){
 
         return memberDto.toString();
     }
