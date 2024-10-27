@@ -5,6 +5,8 @@ import com.springboot.lecture.dto.MemberDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -16,10 +18,13 @@ import java.util.Map;
 @RequestMapping("/get-api")
 public class GetController {
 
+    private final Logger LOGGER= LoggerFactory.getLogger(GetController.class);
+
     // http://localhost:8080/get-api/call-cafe
     @RequestMapping(value = "/call-cafe", method = RequestMethod.GET)
     @Operation(summary="커피주세요", description="get 요청에 의해 커피를 응답")
     public String coffee(){
+        LOGGER.info("커피가 나왔습니다!!!!!");
         return "커피나왔어요!!!";
     }
 
@@ -38,6 +43,7 @@ public class GetController {
     // http://localhost:8080/get-api/variable1/{variable}
     @GetMapping(value="/variable1/{variable}")
     public String getPathVariableFromRequest(@PathVariable("variable") String variable) {
+        LOGGER.info("@PathVariable 을 통해 들어온 값: {}", variable);
         return variable;
     }
 
