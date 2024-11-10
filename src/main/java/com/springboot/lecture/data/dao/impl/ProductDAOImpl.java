@@ -17,7 +17,7 @@ public class ProductDAOImpl implements ProductDAO {
     @Autowired
     public ProductDAOImpl(ProductRepository productRepository){
 
-        this.productRepository= productRepository;
+        this.productRepository = productRepository;
     }
 
     @Override
