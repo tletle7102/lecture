@@ -1,15 +1,19 @@
 package com.springboot.lecture.data.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="product")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name="product")
 public class Product {
 
     @Id
