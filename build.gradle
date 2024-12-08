@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.3.4'
 	id 'io.spring.dependency-management' version '1.1.6'
+	id 'jacoco' // JaCoCo 플러그인 추가
 }
 
 group = 'com.springboot'
@@ -34,11 +35,37 @@ dependencies {
 	implementation 'org.mariadb.jdbc:mariadb-java-client:3.5.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	// https://mvnrepository.com/artifact/com.h2database/h2
-	testImplementation 'com.h2database:h2:2.2.224'
-
-}
+// https://mvnrepository.com/artifact/com.h2database/h2
+	testImplementation 'com.h2database:h2:2.2.224'}
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+jacoco {
+	toolVersion = "0.8.8" // JaCoCo 버전 설정
+}
+
+//tasks.test {
+//	finalizedBy jacocoTestReport // 테스트 완료 후 JaCoCo 보고서 생성
+//}
+
+tasks.test {
+	useJUnitPlatform()
+	finalizedBy jacocoTestReport // 테스트 후 JaCoCo 보고서 생성
+}
+
+jacocoTestReport {
+	dependsOn test // 테스트가 끝난 후 JaCoCo 보고서 생성
+	reports {
+		xml {
+			enabled true  // XML 형식의 보고서를 활성화
+		}
+		html {
+			enabled true // HTML 형식의 보고서를 활성화
+		}
+		csv {
+			enabled false // CSV 보고서 비활성화
+		}
+	}
 }
