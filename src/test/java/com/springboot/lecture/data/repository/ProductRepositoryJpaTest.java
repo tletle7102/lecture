@@ -10,6 +10,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
@@ -50,17 +52,24 @@ class ProductRepositoryJpaTest {
         System.out.println(productRepository.findByName("펜", getSort()));
         System.out.println("=============");
 
-        System.out.println("=============");
         Page<Product> productPage = productRepository.findByName("펜", PageRequest.of(0,2));
+        System.out.println("=============");
         System.out.println(productPage);
         System.out.println("=============");
 
-
         System.out.println("=============");
         System.out.println(productPage.getContent());
-
-
         System.out.println("=============");
+
+        List<Product> nameFromFirstParam = productRepository.findByName("펜");
+        List<Product> nameFromNameParam = productRepository.findByNameParam("펜");
+        System.out.println("=============");
+        System.out.println(nameFromFirstParam);
+        System.out.println(nameFromNameParam);
+        System.out.println("=============");
+
+        List<Object[]> selectSpecificcolumn = productRepository.findByNameParam2("펜");
+        System.out.println(selectSpecificcolumn);
 
     }
 
