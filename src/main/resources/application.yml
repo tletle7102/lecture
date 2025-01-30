@@ -28,3 +28,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+springboot:
+  jwt:
+    secret: "secretKey"
